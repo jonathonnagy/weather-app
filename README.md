@@ -1,7 +1,7 @@
 ## Főbb működés
 Maximum 10 települést vehetünk fel.
-A településeket localstore-ban tároljuk.
-A település nevére kattintva megjelenik annak adatlapja a pillanatnyi időjárással és az előrejelzéssel. A pillanatnyi időjárás esetében a következő 16 nap minimum és maximum hőmérséklete látható egy grafikonnal.
+A települések localstore-ban vannak tárolva.
+A település nevére kattintva megjelenik annak adatlapja a pillanatnyi időjárással és az előrejelzéssel. A pillanatnyi időjárás esetében a következő 16 nap napi minimum és maximum hőmérséklete látható a grafikonon illetve további adatok.
 
 <h2>Setup</h2>
 <p>Clone this repository. You will need node and npm installed globally on your machine.</p>
