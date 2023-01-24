@@ -1,5 +1,3 @@
-// import { Autocomplete, TextField } from "@mui/material";
-// import axios from "axios";
 import { IconButton } from "@mui/material";
 import DeleteIcon from "@mui/icons-material/Delete";
 import React, { useEffect, useState } from "react";
@@ -11,41 +9,17 @@ const Home = () => {
   const [cityList, setCityList] = useState([]);
   const [city, setCity] = useState("");
   const [error, setError] = useState("");
-  // const [allCities, setAllCities] = useState([])
-
-  // console.log(city)
-  // console.log(cityList)
-  // console.log(localStorage.getItem('Cities'))
-
-  // const getCities = (event) => {
-  //   if(event.target.value.length > 2){
-  //    axios
-  //      .get(
-  //        `http://api.openweathermap.org/geo/1.0/direct?q=${'Budapest'}&limit=5&appid=c3189249f4afdf526538f6f3f81e3750`
-  //      )
-  //      .then((response) => {
-  //        console.log(response)
-  //          const newArr = response?.data.map(({name, country}) => ({label: name + ' ' + country, country}))
-  //          console.log(newArr)
-  //          setAllCities(newArr)
-
-  //      });
-  //    }
-  //  };
 
   const handleKeyDown = (event) => {
-    console.log(
-      cityList.includes(city.charAt(0).toUpperCase() + city.slice(1))
-    );
     if (
       event.key === "Enter" &&
       cityList.includes(city.charAt(0).toUpperCase() + city.slice(1))
     ) {
-      setError("This city already exists in your list! Try another one...")
+      setError("This city already exists in your list! Try another one...");
     }
     if (cityList.length === 10 && event.key === "Enter") {
       setError("Your list can only contain 10 cities!");
-      setCity("")
+      setCity("");
     }
     if (
       event.key === "Enter" &&
@@ -63,7 +37,6 @@ const Home = () => {
     const localStorageItems = JSON.parse(localStorage.getItem("Cities"));
     if (localStorageItems) {
       setCityList((current) => [...current, ...localStorageItems]);
-      // setCityList((current) => [ ...localStorageItems]);
     }
   }, []);
 
@@ -81,7 +54,6 @@ const Home = () => {
         className="w-auto rounded-full py-3 px-6 mt-10"
         type="text"
         placeholder="Search for a city..."
-        // autoComplete="address-level2"
         value={city}
         onChange={(e) => {
           setCity(e.target.value);
@@ -106,42 +78,42 @@ const Home = () => {
         </div>
       )}
 
-    <div className="w-[300px] md:w-[600px] mt-8 sm:mt-20 bg-gray-400 rounded-xl p-5 ">
-    <p className="text-center font-bold underline text-md">Your favorite Cities:</p>
-      <ol className="flex flex-wrap justify-center items-center">
-        {cityList.length === 0 ? (
-          <p className="p-5 text-xl">No cities picked yet!</p>
-        ) : (
-          cityList.map((city) => (
-            <div
-              key={city}
-              className="m-3 px-5 py-3 flex justify-between bg-slate-300 rounded-md"
-            >
-              <li
+      <div className="w-[300px] md:w-[600px] mt-8 sm:mt-20 bg-gray-400 rounded-xl p-5 ">
+        <p className="text-center font-bold underline text-md">
+          Your favorite Cities:
+        </p>
+        <ol className="flex flex-wrap justify-center items-center">
+          {cityList.length === 0 ? (
+            <p className="p-5 text-xl">No cities picked yet!</p>
+          ) : (
+            cityList.map((city) => (
+              <div
                 key={city}
-                className="cursor-pointer mx-5"
-                onClick={() => navigate(`city/${city}`)}
+                className="m-3 px-5 py-3 flex justify-between bg-slate-300 rounded-md"
               >
-                {city}
-              </li>
-              <div className="flex">
-                <IconButton
-                  aria-label="delete"
-                  size="small"
-                  onClick={() =>
-                    setCityList(cityList.filter((e) => e !== city))
-                  }
+                <li
+                  key={city}
+                  className="cursor-pointer mx-5"
+                  onClick={() => navigate(`city/${city}`)}
                 >
-                  <DeleteIcon fontSize="small" />
-                </IconButton>
-
-                {/* <button className="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-bold rounded-lg text-xs px-2 py-1 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900" onClick={()=>setCityList(cityList.filter(e=> e!== city))}>X</button> */}
+                  {city}
+                </li>
+                <div className="flex">
+                  <IconButton
+                    aria-label="delete"
+                    size="small"
+                    onClick={() =>
+                      setCityList(cityList.filter((e) => e !== city))
+                    }
+                  >
+                    <DeleteIcon fontSize="small" />
+                  </IconButton>
+                </div>
               </div>
-            </div>
-          ))
-        )}
-      </ol>
-    </div>
+            ))
+          )}
+        </ol>
+      </div>
     </div>
   );
 };
