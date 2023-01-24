@@ -47,7 +47,7 @@ const Home = () => {
   console.log(cityList);
 
   return (
-    <div className="w-full h-[100%] md:h-screen bg-slate-500 flex items-center flex-col">
+    <div className="w-full h-[100%] sm:h-screen bg-slate-500 flex items-center flex-col">
       <h1 className="text-3xl font-bold">Weather App</h1>
       <img src={mainLogo} alt="" className="w-60" />
       <input
